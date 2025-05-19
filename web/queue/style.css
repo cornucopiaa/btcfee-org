@@ -1,9 +1,11 @@
 body {
     font-family: "Helvetica", "Arial", sans-serif;
+    background: #171C3B;
+    color: #A8ADB4;
 }
 a {
     text-decoration: none;
-    color: #008;
+    color: #ADCDE8;
 }
 .lnk {
     margin: 1px;
@@ -16,9 +18,35 @@ a {
     padding-right: 3px;
     cursor: pointer;
 }
+
+ul {
+    max-width: 65em;
+    margin: 1.5ex auto;
+}
+
+#title-element {
+    text-align: center;
+}
+
+.faq {
+    background: #1E2B52;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 65em;
+    margin: 1.5ex auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.faq-question {
+    font-weight: bold;
+}
+
 .selected {
-    color: #000;
-    border: 2px solid #000;
+    color: white;
+    border: 2px solid white;
 }
 .centered {
     text-align: center;
@@ -31,7 +59,7 @@ a {
 .header {
     font-size: 14px;
     text-align: center;
-    background-color: #ddd;
+    background-color: #111531;
     padding: 5px;
     margin: 10px;
     line-height: 2;
@@ -157,4 +185,20 @@ p {
         font-size: 14px;
         padding: 0 .7em;
     }
+}
+
+.root-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-title {
+    color: #A8ADB4;
 }

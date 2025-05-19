@@ -153,7 +153,7 @@ var config = [
 //   "#800080", "#ac00ac", "#d800d8", "#ff00ff", "#ff2cff", "#ff58ff", "#ff80ff",
    "#000000"
                 ],
-     "inc": true}, 
+     "inc": true},
     {"name":"DASH",
      "classname": "dash",
      "donatebutton": true,
@@ -334,7 +334,7 @@ function drawTitle(plot, cvs) {
     var cvsWidth = plot.width() / 2;
 
     cvs.font = "bold 16px Open Sans";
-    cvs.fillStyle = "#000";
+    cvs.fillStyle = "#A8ADB4";
     cvs.textAlign = 'center';
     cvs.fillText(title(byindex[currentby]), cvsWidth, 20);
     return cvs;
@@ -429,7 +429,7 @@ function setupChart() {
                 steps: false
             },
         },
-        watermark: { mode: "text", order: "background", position: "ne", text: "mempool.jhoenicke.de", font: "30px Arial" },
+        watermark: { mode: "text", order: "background", position: "ne", text: "BTCfee.org", font: "30px Arial" },
         selection: { mode: "x" },
         xaxis: { mode: "time", timezone: "browser" },
         legend: { container: legendDiv, sorted: "reverse", noColumns: legendColumns,
@@ -441,6 +441,7 @@ function setupChart() {
                   }
                 },
         grid: { hoverable: true,
+          color: "#A8ADB4",
                 margin: {top:30} },
     };
     chart = $.plot("#chartContainer", converted, chartconfig);
@@ -512,13 +513,13 @@ function loadData(rawdata) {
 }
 
 function setdonate(coin) {
-    for (i = 0; i < classes.length; i++) {
-        document.getElementById("don"+classes[i]).classList.remove("selected");
-	for (let el of document.getElementsByClassName("do"+classes[i])) {
-	    el.style.display = classes[i] == coin ? 'inline' : 'none';
-	}
-    }
-    document.getElementById("don"+coin).classList.add("selected");
+  //   for (i = 0; i < classes.length; i++) {
+  //       document.getElementById("don"+classes[i]).classList.remove("selected");
+	// for (let el of document.getElementsByClassName("do"+classes[i])) {
+	//     el.style.display = classes[i] == coin ? 'inline' : 'none';
+	// }
+  //   }
+  //   document.getElementById("don"+coin).classList.add("selected");
 }
 
 function setconfig(cfg) {
@@ -584,6 +585,46 @@ function sethash() {
 	    config[currconfig].ranges[config[currconfig].show[feelevel]];
     }
     location.hash = "#" + config[currconfig].name + "," + currtimespan + "," + bynames[currentby] + optfeelevel;
+
+    const description = `Explore ${config[currconfig].name} transaction statistics over ${currtimespan}. Analyze metrics like ${bynames[currentby]} and gain insights into blockchain activity with BTCfee.org. `
+    const canonicalLink = `https://btcfee.org/#${config[currconfig].name},${currtimespan},${bynames[currentby]}`
+    const title = `${config[currconfig].name} Fee Statistics - ${currtimespan} - ${bynames[currentby]}`
+    const titleCaption = `This page provides ${config[currconfig].name} transaction ${bynames[currentby]} statistics over the last ${currtimespan}. Gain insights into network activity and fee structures in real-time.`
+    const markUpLd = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://btcfee.org",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `https://btcfee.org#${config[currconfig].name},${currtimespan},${bynames[currentby]}`,
+        "query-input": `required name=${config[currconfig].name},${currtimespan},${bynames[currentby]}`
+      }
+    })
+    const dynamicMarkUpLd = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "url": `https://btcfee.org/#${config[currconfig].name},${currtimespan},${bynames[currentby]}`,
+      "name": `${config[currconfig].name} Fee Statistics - ${currtimespan} - ${bynames[currentby]}`,
+      "description": `Explore Bitcoin transaction statistics over ${currtimespan}. Analyze metrics like ${bynames[currentby]} for deeper blockchain insights.`,
+      "mainEntity": {
+        "@type": "Dataset",
+        "name": "Bitcoin Fee Dataset",
+        "variableMeasured": `${bynames[currentby]}`,
+        "temporalCoverage": "P1D",
+        "creator": {
+          "@type": "Organization",
+          "name": "BTCfee.org"
+        }
+      }
+    })
+
+    document.querySelector('meta[name="description"]').setAttribute("content", description);
+    document.querySelector('meta[name="og:description"]').setAttribute("content", description);
+    document.querySelector('link[rel="canonical"]').setAttribute("href", canonicalLink);
+    document.getElementById('title-element').innerHTML = title;
+    document.getElementById('title-caption-element').innerHTML = titleCaption;
+    document.getElementById('input-search-ld-markup').innerHTML = markUpLd;
+    document.getElementById('input-search-ld-dynamic').innerHTML = dynamicMarkUpLd;
 }
 
 function button(timespan) {
@@ -723,14 +764,14 @@ function main() {
 	}
     }
     var divcoins = document.getElementById("configs");
-    var divdonate = document.getElementById("donatecoins");
+    // var divdonate = document.getElementById("donatecoins");
     for (var i = 0; i < config.length; i++) {
         divcoins.appendChild(document.createTextNode("\u200b"));
         divcoins.appendChild(createCoinButton(i, false));
-        if (config[i]["donatebutton"]) {
-            divdonate.appendChild(document.createTextNode("\u200b"));
-            divdonate.appendChild(createCoinButton(i, true));
-        }
+        // if (config[i]["donatebutton"]) {
+        //     divdonate.appendChild(document.createTextNode("\u200b"));
+        //     divdonate.appendChild(createCoinButton(i, true));
+        // }
     }
     div = document.getElementById("periods");
     var onclickfun = function(e) { button(e.target.text); };
