@@ -36,12 +36,12 @@ var config = [
      "ranges": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 17, 20, 25, 30, 40, 50, 60, 70, 80, 100, 120, 140, 170, 200, 250, 300, 400, 500, 600, 700, 800, 1000, 1200, 1400, 1700, 2000, 2500, 3000, 4000, 5000, 6000, 7000, 8000, 10000 ],
      "show":   [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,32,33,34,35,36,37 ],
      "colors": [
-   "#535154", "#000060", "#000080", "#0000a0", "#0000c0", "#0000ff", "#2c2cff", "#5858ff", "#8080ff",
+   "#535154", "#00356E", "#00527B", "#067186", "#0093B0", "#04B8DC", "#25DCF5", "#43E4D6", "#7FFFEA",
    "#008000", "#00a000", "#00c000", "#00e000", "#30e030", "#60e060", "#90e090",
    "#808000", "#989800", "#b0b000", "#c8c800", "#e0e000", "#e0e030", "#e0e060",
    "#800000", "#a00000", "#c00000", "#e00000", "#e02020", "#e04040", "#e06060",
    "#800080", "#ac00ac", "#d800d8", "#ff00ff", "#ff2cff", "#ff58ff", "#ff80ff",
-   "#000000"
+   "#C9C3D0"
              ],
      "inc": true},
     {"name":"BTC (default mempool)",
@@ -57,12 +57,12 @@ var config = [
      "ranges": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 17, 20, 25, 30, 40, 50, 60, 70, 80, 100, 120, 140, 170, 200, 250, 300, 400, 500, 600, 700, 800, 1000, 1200, 1400, 1700, 2000, 2500, 3000, 4000, 5000, 6000, 7000, 8000, 10000 ],
      "show":   [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,32,33,34,35,36,37 ],
      "colors": [
-   "#535154", "#000060", "#000080", "#0000a0", "#0000c0", "#0000ff", "#2c2cff", "#5858ff", "#8080ff",
+   "#535154", "#00356E", "#00527B", "#067186", "#0093B0", "#04B8DC", "#25DCF5", "#43E4D6", "#7FFFEA",
    "#008000", "#00a000", "#00c000", "#00e000", "#30e030", "#60e060", "#90e090",
    "#808000", "#989800", "#b0b000", "#c8c800", "#e0e000", "#e0e030", "#e0e060",
    "#800000", "#a00000", "#c00000", "#e00000", "#e02020", "#e04040", "#e06060",
    "#800080", "#ac00ac", "#d800d8", "#ff00ff", "#ff2cff", "#ff58ff", "#ff80ff",
-   "#000000"
+   "#C9C3D0"
              ],
      "inc": true},
     {"name":"ETH",
@@ -79,12 +79,12 @@ var config = [
      "ranges": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 17, 20, 25, 30, 40, 50, 60, 70, 80, 100, 120, 140, 170, 200, 250, 300, 400, 500, 600, 700, 800, 1000, 1200, 1400, 1700, 2000, 2500, 3000, 4000, 5000, 6000, 7000, 8000, 10000 ],
      "show":   [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 ],
      "colors": [
-   "#535154", "#000040", "#000070", "#0000a0", "#0000d0", "#0000ff", "#2c2cff", "#5858ff", "#8080ff",
+   "#535154", "#000040", "#000070", "#067186", "#0000d0", "#04B8DC", "#25DCF5", "#43E4D6", "#7FFFEA",
    "#008000", "#00a000", "#00c000", "#00e000", "#30e030", "#60e060", "#90e090",
    "#808000", "#989800", "#b0b000", "#c8c800", "#e0e000", "#e0e030", "#e0e060",
    "#800000", "#a00000", "#c00000", "#e00000", "#e02020", "#e04040", "#e06060",
 //   "#800080", "#ac00ac", "#d800d8", "#ff00ff", "#ff2cff", "#ff58ff", "#ff80ff",
-   "#000000"
+   "#C9C3D0"
              ],
      "inc": true},
     {"name":"BCH",
@@ -102,12 +102,12 @@ var config = [
      "show":   [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,  13, 15, 16, 17, 18, 19, 20, 21,22,23,24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 ],
      "colors": [
    "#535154", "#400080", "#5600ac", "#6100c2", "#6c00d8", "#7600ec", "#7f00ff", "#9020ff",
-   "#c040ff", "#0000ac", "#0000c2", "#0000d8", "#0000ec", "#0000ff", "#2c2cff", "#5858ff", "#8080ff",
+   "#c040ff", "#0000ac", "#0000c2", "#0000d8", "#0000ec", "#04B8DC", "#25DCF5", "#43E4D6", "#7FFFEA",
    "#008000", "#00a000", "#00c000", "#00e000", "#30e030", "#60e060", "#90e090",
    "#808000", "#989800", "#b0b000", "#c8c800", "#e0e000", "#e0e030", "#e0e060",
 //   "#800000", "#a00000", "#c00000", "#e00000", "#e02020", //"#e04040", "#e06060",
 //   "#800080", "#ac00ac", "#d800d8", "#ff00ff", "#ff2cff", "#ff58ff", "#ff80ff",
-   "#000000" ],
+   "#C9C3D0" ],
      "inc": true},
     {"name":"DOGE",
      "classname": "doge",
@@ -124,12 +124,12 @@ var config = [
      "show":   [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,22,23,24, 25, 26, 30, 45 ],
      "colors": [
    "#535154", "#400080", "#5600ac", "#6100c2", "#6c00d8", "#7600ec", "#7f00ff", "#9020ff",
-   "#c040ff", "#0000ac", "#0000c2", "#0000d8", "#0000ec", "#0000ff", "#2c2cff", "#5858ff", "#8080ff",
+   "#c040ff", "#0000ac", "#0000c2", "#0000d8", "#0000ec", "#04B8DC", "#25DCF5", "#43E4D6", "#7FFFEA",
    "#008000", "#00a000", "#00c000", "#00e000", "#30e030", "#60e060", "#90e090",
    "#808000", "#989800", "#b0b000", /*"#c8c800", "#e0e000", "#e0e030",*/ "#e0e060",
 //   "#800000", "#a00000", "#c00000", "#e00000", "#e02020", "#e04040", "#e06060",
 //   "#800080", "#ac00ac", "#d800d8", "#ff00ff", "#ff2cff", "#ff58ff", "#ff80ff",
-   "#000000"],
+   "#C9C3D0"],
      "inc": true},
     {"name":"LTC",
      "classname": "ltc",
@@ -146,12 +146,12 @@ var config = [
      "show":   [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32 ],
      "colors": [
    "#535154", "#400080", "#5600ac", "#6100c2", "#6c00d8", "#7600ec", "#7f00ff", "#9020ff",
-   "#c040ff", "#0000ac", "#0000c2", "#0000d8", "#0000ec", "#0000ff", "#2c2cff", "#5858ff", "#8080ff",
+   "#c040ff", "#0000ac", "#0000c2", "#0000d8", "#0000ec", "#04B8DC", "#25DCF5", "#43E4D6", "#7FFFEA",
    "#008000", "#00a000", "#00c000", "#00e000", "#30e030", "#60e060", "#90e090",
    "#808000", "#989800", "#b0b000", "#c8c800",// "#e0e000", "#e0e030", "#e0e060",
 //   "#800000", "#a00000", "#c00000", "#e00000", "#e02020", //"#e04040", "#e06060",
 //   "#800080", "#ac00ac", "#d800d8", "#ff00ff", "#ff2cff", "#ff58ff", "#ff80ff",
-   "#000000"
+   "#C9C3D0"
                 ],
      "inc": true},
     {"name":"DASH",
@@ -168,12 +168,12 @@ var config = [
      "ranges": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 17, 20, 25, 30, 40, 50, 60, 70, 80, 100, 120, 140, 170, 200, 250, 300, 400, 500, 600, 700, 800, 1000, 1200, 1400, 1700, 2000, 2500, 3000, 4000, 5000, 6000, 7000, 8000, 10000 ],
      "show":   [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 ],
      "colors": [
-   "#535154", "#0000ac", "#0000c2", "#0000d8", "#0000ec", "#0000ff", "#2c2cff", "#5858ff", "#8080ff",
+   "#535154", "#0000ac", "#0000c2", "#0000d8", "#0000ec", "#04B8DC", "#25DCF5", "#43E4D6", "#7FFFEA",
    "#008000", "#00a000", "#00c000", "#00e000", "#30e030", "#60e060", "#90e090",
    "#808000", "#989800", "#b0b000", "#c8c800", "#e0e000", "#e0e030", "#e0e060",
    "#800000", "#a00000", "#c00000", "#e00000", "#e02020", "#e04040", "#e06060",
 //   "#800080", "#ac00ac", "#d800d8", "#ff00ff", "#ff2cff", "#ff58ff", "#ff80ff",
-   "#000000"
+   "#C9C3D0"
              ],
      "inc": true}
 ];
@@ -429,7 +429,7 @@ function setupChart() {
                 steps: false
             },
         },
-        watermark: { mode: "text", order: "background", position: "ne", text: "BTCfee.org", font: "30px Arial" },
+        watermark: { mode: "text", order: "background", position: "ne", text: "BTCfee.org", font: "30px Arial", color: "#A8ADB4" },
         selection: { mode: "x" },
         xaxis: { mode: "time", timezone: "browser" },
         legend: { container: legendDiv, sorted: "reverse", noColumns: legendColumns,
@@ -586,10 +586,10 @@ function sethash() {
     }
     location.hash = "#" + config[currconfig].name + "," + currtimespan + "," + bynames[currentby] + optfeelevel;
 
-    const description = `Explore ${config[currconfig].name} transaction statistics over ${currtimespan}. Analyze metrics like ${bynames[currentby]} and gain insights into blockchain activity with BTCfee.org. `
+    const description = `Explore ${config[currconfig].name} transaction statistics over ${currtimespan === 'all' ? 'time' : currtimespan}. Analyze metrics like ${bynames[currentby]} and gain insights into blockchain activity with BTCfee.org. `
     const canonicalLink = `https://btcfee.org/#${config[currconfig].name},${currtimespan},${bynames[currentby]}`
-    const title = `${config[currconfig].name} Fee Statistics - ${currtimespan} - ${bynames[currentby]}`
-    const titleCaption = `This page provides ${config[currconfig].name} transaction ${bynames[currentby]} statistics over the last ${currtimespan}. Gain insights into network activity and fee structures in real-time.`
+    const title = `${config[currconfig].name} Fee Statistics - ${currtimespan} - ${bynames[currentby]} | BTCfee.org`
+    const titleCaption = `This page provides ${config[currconfig].name} transaction ${bynames[currentby]} statistics over ${currtimespan === 'all' ? 'time' : 'the last ' + currtimespan}. Gain insights into network activity and fee structures in real-time.`
     const markUpLd = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -620,6 +620,7 @@ function sethash() {
 
     document.querySelector('meta[name="description"]').setAttribute("content", description);
     document.querySelector('meta[name="og:description"]').setAttribute("content", description);
+    document.querySelector('title').innerHTML = title;
     document.querySelector('link[rel="canonical"]').setAttribute("href", canonicalLink);
     document.getElementById('title-element').innerHTML = title;
     document.getElementById('title-caption-element').innerHTML = titleCaption;
