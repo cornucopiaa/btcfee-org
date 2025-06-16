@@ -589,6 +589,7 @@ function sethash() {
     const description = `Explore ${config[currconfig].name} transaction statistics over ${currtimespan === 'all' ? 'time' : currtimespan}. Analyze metrics like ${bynames[currentby]} and gain insights into blockchain activity with BTCfee.org. `
     const canonicalLink = `https://btcfee.org/#${config[currconfig].name},${currtimespan},${bynames[currentby]}`
     const title = `${config[currconfig].name} Fee Statistics - ${currtimespan} - ${bynames[currentby]} | BTCfee.org`
+    const titleWithoutCaption = `${config[currconfig].name} Fee Statistics - ${currtimespan} - ${bynames[currentby]}`
     const titleCaption = `This page provides ${config[currconfig].name} transaction ${bynames[currentby]} statistics over ${currtimespan === 'all' ? 'time' : 'the last ' + currtimespan}. Gain insights into network activity and fee structures in real-time.`
     const markUpLd = JSON.stringify({
       "@context": "https://schema.org",
@@ -622,7 +623,7 @@ function sethash() {
     document.querySelector('meta[name="og:description"]').setAttribute("content", description);
     document.querySelector('title').innerHTML = title;
     document.querySelector('link[rel="canonical"]').setAttribute("href", canonicalLink);
-    document.getElementById('title-element').innerHTML = title;
+    document.getElementById('title-element').innerHTML = titleWithoutCaption;
     document.getElementById('title-caption-element').innerHTML = titleCaption;
     document.getElementById('input-search-ld-markup').innerHTML = markUpLd;
     document.getElementById('input-search-ld-dynamic').innerHTML = dynamicMarkUpLd;

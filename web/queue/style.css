@@ -191,6 +191,12 @@ p {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media screen and (max-width: 520px) {
+        flex-direction: column;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
 }
 
 .header__right {
@@ -201,8 +207,4 @@ p {
 
 .header-title {
     color: #A8ADB4;
-}
-
-.header__logo {
-    border-radius: 50%;
 }
