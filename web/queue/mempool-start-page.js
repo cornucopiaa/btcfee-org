@@ -444,33 +444,10 @@ function setupChart() {
           color: "#A8ADB4",
                 margin: {top:30} },
     };
-    chart = $.plot("#chartContainer", converted, chartconfig);
-    chart.hooks.drawOverlay.push( function(plot, cvs) {
-        drawTitle(plot, cvs);
-    });
 }
-
-function showChart(raw, dataidx, container, unit) {
-    for (var i = 0; i < 3; i++) {
-	storeData(raw, i, scale(i));
-    }
-    setupChart();
-    window.onresize = setupChart;
-    $(chart.getPlaceholder()).bind("plothover", function (event, pos, item) {
-        tooltip(event, pos, item);
-    });
-    $(chart.getPlaceholder()).bind("plotselected", zoomHandler);
-}
-
 
 function showMempool(rawdata) {
     var idx = byindex[currentby];
-    showChart(rawdata, idx, "chartContainer", scale(idx));
-    reloadInterval = 300000;
-    reloader = update;
-    if (reloadInterval > 0) {
-        reloading = setTimeout(reloader, reloadInterval);
-    }
 }
 
 function zoomData(rawdata) {
@@ -584,13 +561,17 @@ function sethash() {
 	optfeelevel = "," +
 	    config[currconfig].ranges[config[currconfig].show[feelevel]];
     }
+
+    var hashString = "#" + config[currconfig].name + "," + currtimespan + "," + bynames[currentby] + optfeelevel;
+    var locationToReplace = `${window.location.origin}/${hashString}`;
+
+    console.log(locationToReplace);
     location.hash = "#" + config[currconfig].name + "," + currtimespan + "," + bynames[currentby] + optfeelevel;
 
-    const description = `Explore ${config[currconfig].name} transaction statistics data over ${currtimespan === 'all' ? 'time' : 'the last' + currtimespan}. Analyze vbyte ${bynames[currentby]} trends to understand network congestion and fee market shifts on BTCfee.org.. `
-    const canonicalLink = `https://btcfee.org/#${config[currconfig].name},${currtimespan},${bynames[currentby]}`
-    const title = `${config[currconfig].name} Fee Statistics - ${currtimespan} - ${bynames[currentby]} | BTCfee.org`
-    const titleWithoutCaption = `${config[currconfig].name} Fee Statistics - ${currtimespan} - ${bynames[currentby]}`
-    const titleCaption = `This page provides ${config[currconfig].name} transaction ${bynames[currentby]} statistics over ${currtimespan === 'all' ? 'time' : 'the last ' + currtimespan}. Gain insights into network activity and fee structures in real-time.`
+    const description = `Discover real-time mempool visualizations for BTC, ETH, BCH, DOGE, LTC, and DASH. Compare counts, fees, and weight over custom periods to gain actionable insights into blockchain activity.`
+    const canonicalLink = `https://btcfee.org/`
+    const title = `BTC Fee Statistics | BTCfee.org`
+    const titleWithoutCaption = `BTC Fee Statistics | BTCfee.org`
     const markUpLd = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -801,7 +782,7 @@ function main() {
         div.appendChild(document.createTextNode("\u200b"));
         div.appendChild(btn);
     }
-    setconfig(hashconfig);
+    // setconfig(hashconfig);
     if (hashfeelevel >= 0) {
 	feelevel = config[currconfig].show.findIndex(show => config[currconfig].ranges[show] >= hashfeelevel);
 	if (feelevel < 0) {
@@ -809,8 +790,6 @@ function main() {
 	}
     }
     currentby = hashby;
-    document.getElementById("by"+currentby).classList.add("selected");
-    button(hashtimespan);
-    document.getElementById("chartDivider").onmousedown = dragDivider;
-    document.getElementById("chartDivider").ontouchstart = touchDivider;
+    // document.getElementById("by"+currentby).classList.add("selected");
+    // button(hashtimespan);
 }

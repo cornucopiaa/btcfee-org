@@ -21,23 +21,31 @@ a {
 
 ul {
     max-width: 65em;
-    margin: 1.5ex auto;
+    margin: 1.5ex auto 1.5ex 0;
 }
 
 #title-element {
     text-align: center;
 }
 
-.faq {
-    background: #1E2B52;
-    padding: 10px;
-    border-radius: 10px;
+
+.section {
     max-width: 65em;
-    margin: 1.5ex auto;
-    margin-top: 50px;
+    background: #1E2B52;
+    padding: 22px;
     display: flex;
     flex-direction: column;
     gap: 4px;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.02);
+    border-radius: 17px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.faq {
+    margin: 1.5ex auto;
+    margin-top: 50px;
 }
 
 .faq-question {
@@ -203,8 +211,95 @@ p {
     display: flex;
     align-items: center;
     gap: 10px;
+
+    img {
+        width: 33px;
+    }
 }
 
 .header-title {
     color: #A8ADB4;
 }
+
+.start-block {
+    height: 340px;
+    background-image: url("./btc-fee-start-block-image.png");
+    background-position: left;
+    background-size: cover;
+    border-radius: initial;
+}
+
+.start-block__text {
+    color: #A8ADB4;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.48px;
+    max-width: 430px;
+    margin-top: 60px;
+    margin-left: auto;
+    padding-right: 80px;
+
+    @media screen and (max-width: 520px) {
+        padding-right: 0;
+    }
+}
+
+.section-title {
+    color: #A8ADB4;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.48px;
+    text-align: center;
+}
+
+.section-block-title {
+    font-size: 20px;
+}
+
+.section-wrapper {
+    display: flex;
+    gap: 21px;
+    max-width: calc(65em + 44px);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+
+    @media screen and (max-width: 600px) {
+        flex-wrap: wrap;
+    }
+}
+
+.section-wrapper:nth-child(even) {
+    @media screen and (max-width: 600px) {
+        .section:nth-child(odd) {
+            order: 2
+        }
+
+        .section:nth-child(even) {
+            order: 1
+        }
+    }
+}
+
+.section-content-image {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    margin: auto;
+}
+
+.section-block-text {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.header-faq-page-link {
+    color: #db2323;
+    border: 2px solid #b666b6;
+    padding: 5px 15px;
+    margin-left: 20px;
+}
+
+

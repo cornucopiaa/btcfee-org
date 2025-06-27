@@ -29,14 +29,16 @@
 <body onLoad="main();">
   <header class="root-header">
       <div class="header__left">
-          <img class="header__logo" src="icons/logo.svg" alt="logo" />
+          <a href="https://btcfee.org/"><img class="header__logo" src="icons/logo.svg" alt="logo" /></a>
       </div>
       <div class="header__right">
-          <a href="https://btcmempool.org/"><img src="icons/mempool-icon.svg" /></a>
-          <a href="https://xmrscan.org/"><img src="icons/xmr-icon.svg" /></a>
           <a href="https://btcscan.org/"><img src="icons/btc-icon.svg" /></a>
           <a href="https://ethscan.org/"><img src="icons/eth-icon.svg" /></a>
+          <a href="https://xmrscan.org/"><img src="icons/xmr-icon.svg" /></a>
           <a href="https://moneroexplorer.org/"><img src="icons/monero-icon.svg" /></a>
+          <a href="https://btcmempool.org/"><img src="icons/mempool-icon.svg" /></a>
+          <a href="https://btcfee.org/"><img src="icons/btc-fee-icon.svg" /></a>
+          <a href="https://btcfees.org/"><img src="icons/btc-fees-icon-action.svg" /></a>
       </div>
   </header>
   <div class="header">
@@ -44,6 +46,7 @@
     <div id="configs" style="display: inline-block;"></div>
     &ndash; <div id="periods" style="display: inline-block;">Period: </div>
     &ndash; <div id="by" style="display: inline-block;">By: </div>
+      <a href="https://btcfee.org/" class="header-faq-page-link">FAQ</a>
   </div>
   <div id="javascriptwarning">
     This page needs JavaScript to create the graphs and dynamically load the
@@ -58,76 +61,5 @@
   <div id="chartLegend" class="chart-legend"></div>
   <div id="tooltip"></div>
   <div id="chartDivider" class="chart-divider">:&nbsp;:&nbsp;:&nbsp;:</div>
-  <div>
-    <p>
-        This page provides a real-time visualization of unconfirmed cryptocurrency transactions, commonly referred to as the mempool. The mempool holds transactions that are yet to be written to the blockchain and are temporarily stored in volatile memory. BTCfee.org offers insights into how the mempool evolves over time, helping users understand transaction dynamics.
-    </p>
-    <p><b>Understanding the Mempool</b></p>
-    <ul>
-        <li>
-            <p><b>What is the Mempool?</b></p>
-            <p>The mempool is a collection of unconfirmed transactions waiting to be processed and included in a block. Since decentralized cryptocurrencies do not have a universal mempool, each node maintains its own set of transactions it has seen. The mempool data displayed here is sourced directly from a full node and is updated every minute. Note that the mempool is reset when the node is restarted.</p>
-        </li>
-        <li>
-            <p><b>How Transactions Are Represented:</b></p>
-            <p>Transactions are color-coded by their fee rate (measured in satoshis per virtual byte).</p>
-            <ul>
-                <li>Low-fee transactions are displayed at the bottom.</li>
-                <li>High-fee transactions are stacked on top, as miners prioritize them.</li>
-            </ul>
-        </li>
-        <li>
-            <p><b>Mempool Dynamics:</b></p>
-            <p>A new block usually clears the highest-fee transactions, removing approximately 1 MB of data from the top of the queue. If lower-fee transactions remain visible over several hours without shrinking, it indicates that higher-paying transactions are consistently taking precedence.</p>
-        </li>
-    </ul>
-    <p><b>Interactive Features</b></p>
-      <ul>
-          <li>
-              <p><b>Dynamic Charts:</b></p>
-              <p>The horizontal axis represents time (selectable from the last 2 hours to the full dataset), while the vertical axis can be switched between:</p>
-              <ul>
-                  <li><b>Count:</b> Number of transactions.</li>
-                  <li><b>Fee:</b> Total transaction fees.</li>
-                  <li><b>Weight:</b> Total transaction size, reflecting the segwit discount.</li>
-              </ul>
-          </li>
-          <li>In the weight chart, a larger stripe compared to the count chart signifies larger-than-average transactions. Similarly, a higher stripe on the fee chart reflects higher cumulative fees.</li>
-          <li>
-              <p><b>Customizable Views:</b></p>
-              <p>Users can click on a fee rate in the legend to hide all lower fee rates. This allows for a clearer view of transactions competing at a specific fee level.</p>
-          </li>
-      </ul>
-      <p><b>SegWit and Virtual Byte Insights</b></p>
-      <ul>
-          <li>Transactions are displayed in virtual bytes (vbytes), accounting for the SegWit discount.</li>
-          <li>A block includes a maximum of 1 vMB of data, even if the raw size exceeds 1 MB.</li>
-          <li>Fee rates are computed with the SegWit discount applied, and transactions at the boundary of fee stripes are included in the higher stripe. Free transactions are excluded from this visualization.</li>
-      </ul>
-      <p><b>Mempool Size Limit</b></p>
-      <ul>
-          <li>
-              <p>The default mempool size for a Bitcoin node is 300 MB, but this size is calculated differently than block size:</p>
-              <ul>
-                  <li><b>No SegWit Discount:</b> The mempool size includes the full transaction size.</li>
-                  <li><b>Effective Size:</b> The 300 MB mempool limit translates to approximately 50–120 vMB, depending on transaction structure.</li>
-              </ul>
-          </li>
-      </ul>
- </div>
-    <section class="faq">
-        <div class="question-wrapper">
-            <p class="faq-question">What are cryptocurrency transaction fees?</p>
-            <p class="faq-answer">Weight is a measure of transaction size, reflecting how much space it occupies in a block. Larger transactions typically require higher fees.</p>
-        </div>
-        <div class="question-wrapper">
-            <p class="faq-question">What does 'weight' mean in Bitcoin transactions?</p>
-            <p class="faq-answer">Transaction fees are the costs associated with processing transactions on a blockchain network. They incentivize miners or validators to include your transaction in the next block.</p>
-        </div>
-        <div class="question-wrapper">
-            <p class="faq-question">How often is data updated on BTCfee.org?</p>
-            <p class="faq-answer">Data is updated in real-time to provide the most accurate insights into blockchain activity.</p>
-        </div>
-    </section>
   </body>
 </html>

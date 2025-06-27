@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <title>Bitcoin Mempool Size Statistics | BTCfee.org</title>
+    <script src="flot/jquery.min.js"></script>
+    <script src="flot/jquery.flot.min.js"></script>
+    <script src="flot/jquery.flot.time.min.js"></script>
+    <script src="flot/jquery.flot.stack.min.js"></script>
+    <script src="flot/jquery.flot.resize.min.js"></script>
+    <script src="flot/jquery.flot.selection.min.js"></script>
+    <script src="flot/jquery.flot.navigate.min.js"></script>
+    <script src="flot/jquery.flot.watermark.min.js"></script>
+    <script src="mempool-start-page.js?v=2.0.23"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="Content-Language" content="en">
+    <meta name="keywords" content="Bitcoin, Mempool, Statistics">
+    <meta name="description" content="Discover real-time cryptocurrency fee insights on BTCfee.org. Analyze transaction weights, fees, and counts for Bitcoin, Ethereum, Dogecoin, and more. ">
+    <meta name="og:description" content="Discover real-time cryptocurrency fee insights on BTCfee.org. Analyze transaction weights, fees, and counts for Bitcoin, Ethereum, Dogecoin, and more. ">
+    <meta property="og:image" content="btcfee_share_preview.png">
+    <link rel="apple-touch-icon" sizes="192x192" type="image/png" href="mempool-icon-192.png">
+    <link rel="shortcut icon" sizes="192x192" type="image/png" href="mempool-icon-192.png">
+    <link rel="icon" type="image/png" href="mempool-icon-192.png">
+    <link rel="canonical" href="https://btcfee.org/">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script type="application/ld+json" id="input-search-ld-markup"></script>
+    <script type="application/ld+json" id="input-search-ld-dynamic"></script>
+</head>
+<body onLoad="main();">
+  <header class="root-header">
+      <div class="header__left">
+          <img class="header__logo" src="icons/logo.svg" alt="logo" />
+      </div>
+      <div class="header__right">
+          <a href="https://btcscan.org/"><img src="icons/btc-icon.svg" /></a>
+          <a href="https://ethscan.org/"><img src="icons/eth-icon.svg" /></a>
+          <a href="https://xmrscan.org/"><img src="icons/xmr-icon.svg" /></a>
+          <a href="https://moneroexplorer.org/"><img src="icons/monero-icon.svg" /></a>
+          <a href="https://btcmempool.org/"><img src="icons/mempool-icon.svg" /></a>
+          <a href="https://btcfee.org/"><img src="icons/btc-fee-icon.svg" /></a>
+          <a href="https://btcfees.org/"><img src="icons/btc-fees-icon-action.svg" /></a>
+      </div>
+  </header>
+  <div class="header">
+    <b class="header-title">Mempool Statistics</b> &ndash;
+    <div id="configs" style="display: inline-block;"></div>
+    &ndash; <div id="periods" style="display: inline-block;">Period: </div>
+    &ndash; <div id="by" style="display: inline-block;">By: </div>
+  </div>
+  <div id="javascriptwarning">
+    This page needs JavaScript to create the graphs and dynamically load the
+    mempool data from the server.
+    <script>
+      document.getElementById("javascriptwarning").style.display = "none";
+    </script>
+  </div>
+  <h1 id="title-element">BTC Fee Statistics</h1>
+  <div class="start-block section">
+      <div class="start-block__text">This page delivers up-to-the-minute visualizations of unconfirmed cryptocurrency transactions, known as the mempool. By tracking mempool evolution, BTCfee.org helps you anticipate fee market dynamics and optimize your transaction strategy.</div>
+  </div>
+  <div class="section">
+    <div class="section-title">Understanding the Mempool</div>
+    <div class="section-block">
+        <h2 class="section-block-title">What Is the Mempool?</h2>
+        <p class="section-block-text">The mempool is a temporary holding area for transactions awaiting inclusion in a block. Each full node maintains its own copy, updating every minute. If your node restarts, it flushes and rebuilds its mempool.</p>
+    </div>
+      <div class="section-block">
+          <h2 class="section-block-title">How Transactions Are Represented?</h2>
+          <p class="section-block-text">Transactions are stacked by fee rate (satoshis per virtual byte):</p>
+          <ul>
+              <li>Low-fee txns at the bottom</li>
+              <li>High-fee txns on top, as miners prioritize them</li>
+          </ul>
+      </div>
+  </div>
+  <div class="section-wrapper">
+      <div class="section">
+          <div class="section-title">Mempool Dynamics</div>
+          <p class="section-block-text">A new block typically clears the highest-fee transactions—about 1 MB worth—first. If low-fee transactions linger for hours, it signals sustained congestion at higher fee tiers.</p>
+      </div>
+      <div class="section">
+          <img src="icons/icon-dynamics.svg" alt="dynamics icon" class="section-content-image">
+      </div>
+  </div>
+
+  <div class="section-wrapper">
+      <div class="section">
+          <img src="icons/icon-fee.svg" alt="fee icon" class="section-content-image">
+      </div>
+      <div class="section">
+          <div class="section-title">Interactive Features</div>
+          <p class="section-block-text"><b>Dynamic Charts</b>: Time on the X-axis (2 hours to full history); switch the Y-axis between:</p>
+          <ul>
+              <li><b>Count:</b> Number of transactions</li>
+              <li><b>Fee:</b> Total fees accumulated</li>
+              <li><b>Weight:</b> Aggregate vbytes (SegWit-adjusted size)</li>
+          </ul>
+          <p class="section-block-text"><b>Customizable Views:</b> Click a fee-rate legend item to hide all lower tiers, isolating competing transactions at your chosen rate.</p>
+      </div>
+  </div>
+
+  <div class="section-wrapper">
+      <div class="section">
+          <div class="section-title">SegWit & Virtual Byte Insights</div>
+          <p class="section-block-text">All sizes use vbytes to reflect SegWit discount. Blocks cap at 1 vMB even if raw data exceeds 1 MB. Transactions at stripe boundaries are rounded up; free transactions are excluded.</p>
+      </div>
+      <div class="section">
+          <img src="icons/icon-segwit.svg" alt="segWit icon" class="section-content-image">
+      </div>
+  </div>
+
+  <div class="section-wrapper">
+      <div class="section">
+          <img src="icons/icon-mempool-size.svg" alt="mempool size icon" class="section-content-image">
+      </div>
+      <div class="section">
+          <div class="section-title">Mempool Size Limit</div>
+          <p class="section-block-text">Default mempool cap is 300 MB (full size), which equates to roughly 50–120 vMB depending on txn composition. Understanding this helps you gauge when your transactions might be dropped.</p>
+      </div>
+  </div>
+
+    <section class="section faq">
+        <div class="section-title">FAQ Preview</div>
+        <div class="question-wrapper">
+            <p class="faq-question">What are cryptocurrency transaction fees?</p>
+            <p class="faq-answer">Weight is a measure of transaction size, reflecting how much space it occupies in a block. Larger transactions typically require higher fees.</p>
+        </div>
+        <div class="question-wrapper">
+            <p class="faq-question">What does 'weight' mean in Bitcoin transactions?</p>
+            <p class="faq-answer">Transaction fees are the costs associated with processing transactions on a blockchain network. They incentivize miners or validators to include your transaction in the next block.</p>
+        </div>
+        <div class="question-wrapper">
+            <p class="faq-question">How often is data updated on BTCfee.org?</p>
+            <p class="faq-answer">Data is updated in real-time to provide the most accurate insights into blockchain activity.</p>
+        </div>
+    </section>
+  </body>
+</html>
