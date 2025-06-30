@@ -565,8 +565,7 @@ function sethash() {
     var hashString = "#" + config[currconfig].name + "," + currtimespan + "," + bynames[currentby] + optfeelevel;
     var locationToReplace = `${window.location.origin}/${hashString}`;
 
-    console.log(locationToReplace);
-    location.hash = "#" + config[currconfig].name + "," + currtimespan + "," + bynames[currentby] + optfeelevel;
+    window.location.replace(locationToReplace)
 
     const description = `Discover real-time mempool visualizations for BTC, ETH, BCH, DOGE, LTC, and DASH. Compare counts, fees, and weight over custom periods to gain actionable insights into blockchain activity.`
     const canonicalLink = `https://btcfee.org/`
@@ -605,7 +604,6 @@ function sethash() {
     document.querySelector('title').innerHTML = title;
     document.querySelector('link[rel="canonical"]').setAttribute("href", canonicalLink);
     document.getElementById('title-element').innerHTML = titleWithoutCaption;
-    document.getElementById('title-caption-element').innerHTML = titleCaption;
     document.getElementById('input-search-ld-markup').innerHTML = markUpLd;
     document.getElementById('input-search-ld-dynamic').innerHTML = dynamicMarkUpLd;
 }
