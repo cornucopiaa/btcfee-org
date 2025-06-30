@@ -563,7 +563,7 @@ function sethash() {
     }
 
     var hashString = "#" + config[currconfig].name + "," + currtimespan + "," + bynames[currentby] + optfeelevel;
-    var locationToReplace = `${window.location.origin}/${hashString}`;
+    var locationToReplace = `${window.location.origin}/detail`;
 
     window.location.replace(locationToReplace)
 
