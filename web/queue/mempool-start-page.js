@@ -562,8 +562,8 @@ function sethash() {
 	    config[currconfig].ranges[config[currconfig].show[feelevel]];
     }
 
-    var hashString = "#" + config[currconfig].name + "," + currtimespan + "," + bynames[currentby] + optfeelevel;
-    var locationToReplace = `${window.location.origin}/detail`;
+    var hashString = "#" + (config[currconfig].name || 'BTC') + "," + (currtimespan || '24h') + "," + (bynames[currentby] || 'weight');
+    var locationToReplace = `${window.location.origin}/detail${hashString}`;
 
     window.location.replace(locationToReplace)
 
