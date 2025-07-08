@@ -178,6 +178,35 @@ var config = [
      "inc": true}
 ];
 var periods = ["2h", "8h", "24h", "2d", "4d", "1w", "2w", "30d", "3m", "6m", "1y", "all"];
+var periodsMapText = {
+  '2h': '2 h',
+  '8h': '8 h',
+  '24h': '24 h',
+  '2d': '2 d',
+  '4d': '4 d',
+  '1w': '1 w',
+  '2w': '2 w',
+  '30d': '30 d',
+  '3m': '3 m',
+  '6m': '6 m',
+  '1y': '1 y',
+  'all': 'all',
+}
+
+var periodsMapTextFull = {
+  '2h': '2 hours',
+  '8h': '8 hours',
+  '24h': '24 hours',
+  '2d': '2 days',
+  '4d': '4 days',
+  '1w': '1 weeks',
+  '2w': '2 weeks',
+  '30d': '30 days',
+  '3m': '3 months',
+  '6m': '6 months',
+  '1y': '1 year',
+  'all': 'all',
+}
 
 var reloader;
 var reloadInterval = 0;
@@ -586,9 +615,13 @@ function sethash() {
     }
     location.hash = "#" + config[currconfig].name + "," + currtimespan + "," + bynames[currentby] + optfeelevel;
 
-    const description = `Explore ${config[currconfig].name} transaction statistics data over ${currtimespan === 'all' ? 'time' : 'the last' + currtimespan}. Analyze vbyte ${bynames[currentby]} trends to understand network congestion and fee market shifts on BTCfee.org.. `
+    const currentByFormatted = `${bynames[currentby].slice(0, 1).toUpperCase()}${bynames[currentby].slice(1)}`;
+    const curTimeSpanFormatted = periodsMapText[currtimespan];
+    const curTimeSpanFormattedFull = periodsMapTextFull[currtimespan];
+
+    const description = `Explore ${config[currconfig].name} transaction data over ${currtimespan === 'all' ? 'time' : 'the last ' + curTimeSpanFormattedFull}. Analyze vbyte ${bynames[currentby]} trends to understand network congestion and fee market shifts on BTCfee.org.`
     const canonicalLink = `https://btcfee.org/#${config[currconfig].name},${currtimespan},${bynames[currentby]}`
-    const title = `${config[currconfig].name} Fee Statistics - ${currtimespan} - ${bynames[currentby]} | BTCfee.org`
+    const title = `${config[currconfig].name} Fee Statistics - ${curTimeSpanFormatted} - ${currentByFormatted} | BTCfee.org`
     const titleWithoutCaption = `${config[currconfig].name} Fee Statistics - ${currtimespan} - ${bynames[currentby]}`
     const titleCaption = `This page provides ${config[currconfig].name} transaction ${bynames[currentby]} statistics over ${currtimespan === 'all' ? 'time' : 'the last ' + currtimespan}. Gain insights into network activity and fee structures in real-time.`
     const markUpLd = JSON.stringify({

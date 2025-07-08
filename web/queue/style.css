@@ -50,6 +50,11 @@ ul {
 
 .faq-question {
     font-weight: bold;
+    font-size: 11px;
+}
+
+.faq-answer {
+    font-size: 11px;
 }
 
 .selected {
@@ -296,9 +301,6 @@ p {
 }
 
 .header-faq-page-link {
-    color: #db2323;
-    border: 2px solid #b666b6;
-    padding: 5px 15px;
     margin-left: 20px;
 }
 

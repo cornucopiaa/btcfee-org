@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-    <title>Bitcoin Mempool Size Statistics | BTCfee.org</title>
+    <title>BTC Fee Statistics | BTCfee.org</title>
     <script src="flot/jquery.min.js"></script>
     <script src="flot/jquery.flot.min.js"></script>
     <script src="flot/jquery.flot.time.min.js"></script>
@@ -15,8 +15,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="Content-Language" content="en">
     <meta name="keywords" content="Bitcoin, Mempool, Statistics">
-    <meta name="description" content="Discover real-time cryptocurrency fee insights on BTCfee.org. Analyze transaction weights, fees, and counts for Bitcoin, Ethereum, Dogecoin, and more. ">
-    <meta name="og:description" content="Discover real-time cryptocurrency fee insights on BTCfee.org. Analyze transaction weights, fees, and counts for Bitcoin, Ethereum, Dogecoin, and more. ">
+    <meta name="description" content="Discover real-time mempool visualizations for BTC, ETH, BCH, DOGE, LTC, and DASH. Compare counts, fees, and weight over custom periods to gain actionable insights into blockchain activity. ">
+    <meta name="og:description" content="Discover real-time mempool visualizations for BTC, ETH, BCH, DOGE, LTC, and DASH. Compare counts, fees, and weight over custom periods to gain actionable insights into blockchain activity. ">
     <meta property="og:image" content="btcfee_share_preview.png">
     <link rel="apple-touch-icon" sizes="192x192" type="image/png" href="mempool-icon-192.png">
     <link rel="shortcut icon" sizes="192x192" type="image/png" href="mempool-icon-192.png">
@@ -68,8 +68,8 @@
           <h2 class="section-block-title">How Transactions Are Represented?</h2>
           <p class="section-block-text">Transactions are stacked by fee rate (satoshis per virtual byte):</p>
           <ul>
-              <li>Low-fee txns at the bottom</li>
-              <li>High-fee txns on top, as miners prioritize them</li>
+              <li><b>Low-fee txns</b> at the bottom</li>
+              <li><b>High-fee txns</b> on top, as miners prioritize them</li>
           </ul>
       </div>
   </div>
@@ -89,7 +89,7 @@
       </div>
       <div class="section">
           <div class="section-title">Interactive Features</div>
-          <p class="section-block-text"><b>Dynamic Charts</b>: Time on the X-axis (2 hours to full history); switch the Y-axis between:</p>
+          <p class="section-block-text"><b>Dynamic Charts:</b> Time on the X-axis (2 hours to full history); switch the Y-axis between:</p>
           <ul>
               <li><b>Count:</b> Number of transactions</li>
               <li><b>Fee:</b> Total fees accumulated</li>
@@ -123,15 +123,15 @@
         <div class="section-title">FAQ Preview</div>
         <div class="question-wrapper">
             <p class="faq-question">What are cryptocurrency transaction fees?</p>
-            <p class="faq-answer">Weight is a measure of transaction size, reflecting how much space it occupies in a block. Larger transactions typically require higher fees.</p>
+            <p class="faq-answer">Fees compensate miners for processing and securing your transaction.</p>
         </div>
         <div class="question-wrapper">
-            <p class="faq-question">What does 'weight' mean in Bitcoin transactions?</p>
-            <p class="faq-answer">Transaction fees are the costs associated with processing transactions on a blockchain network. They incentivize miners or validators to include your transaction in the next block.</p>
+            <p class="faq-question">What does ‘weight’ mean?</p>
+            <p class="faq-answer">Weight measures block space usage, giving SegWit transactions a discount.</p>
         </div>
         <div class="question-wrapper">
-            <p class="faq-question">How often is data updated on BTCfee.org?</p>
-            <p class="faq-answer">Data is updated in real-time to provide the most accurate insights into blockchain activity.</p>
+            <p class="faq-question">How often is data updated?</p>
+            <p class="faq-answer">Charts refresh in real time, ensuring you see the latest mempool state.</p>
         </div>
     </section>
   </body>
