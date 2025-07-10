@@ -563,7 +563,7 @@ function sethash() {
     }
 
     var hashString = "#" + (config[currconfig].name || 'BTC') + "," + (currtimespan || '24h') + "," + (bynames[currentby] || 'weight');
-    var locationToReplace = `${window.location.origin}/detail${hashString}`;
+    var locationToReplace = `${window.location.origin}/statistics${hashString}`;
 
     window.location.replace(locationToReplace)
 
