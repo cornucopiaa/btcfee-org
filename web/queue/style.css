@@ -46,15 +46,22 @@ ul {
 .faq {
     margin: 1.5ex auto;
     margin-top: 50px;
+
+    ul {
+        padding-left: 10px;
+    }
 }
 
 .faq-question {
     font-weight: bold;
-    font-size: 11px;
 }
 
-.faq-answer {
-    font-size: 11px;
+.question-wrapper {
+    margin-top: 30px;
+}
+
+.question-wrapper:first-child {
+    margin-top: 0;
 }
 
 .selected {
