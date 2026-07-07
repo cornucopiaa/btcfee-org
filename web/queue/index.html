@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-    <title>Johoe's Bitcoin Mempool Size Statistics</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NWBQDPELS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0NWBQDPELS');
+    </script>
+    <title>Bitcoin Mempool Size Statistics | BTCfee.org</title>
     <script src="flot/jquery.min.js"></script>
     <script src="flot/jquery.flot.min.js"></script>
     <script src="flot/jquery.flot.time.min.js"></script>
@@ -11,26 +20,42 @@
     <script src="flot/jquery.flot.navigate.min.js"></script>
     <script src="flot/jquery.flot.watermark.min.js"></script>
     <script src="mempool.js?v=2.0.23"></script>
-    <script src="etherdonate.js?v=1.0.1"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="Content-Language" content="en">
-    <meta name="author" content="Jochen Hoenicke">
-    <meta name="keywords" content="Jochen Hoenicke, Bitcoin, Mempool, Statistics">
-    <meta name="description" content="Johoe's Bitcoin Mempool Size Statistics">
-    <meta property="og:image" content="https://jochen-hoenicke.de/queue/mempool-20201126-eth.png">
+    <meta name="keywords" content="Bitcoin, Mempool, Statistics">
+    <meta name="description" content="Discover real-time cryptocurrency fee insights on BTCfee.org. Analyze transaction weights, fees, and counts for Bitcoin, Ethereum, Dogecoin, and more. ">
+    <meta name="og:description" content="Discover real-time cryptocurrency fee insights on BTCfee.org. Analyze transaction weights, fees, and counts for Bitcoin, Ethereum, Dogecoin, and more. ">
+    <meta property="og:image" content="btcfee_share_preview.png">
     <link rel="apple-touch-icon" sizes="192x192" type="image/png" href="mempool-icon-192.png">
     <link rel="shortcut icon" sizes="192x192" type="image/png" href="mempool-icon-192.png">
     <link rel="icon" type="image/png" href="mempool-icon-192.png">
-    <link rel="canonical" href="https://mempool.jhoenicke.de/">
+    <link rel="canonical" href="https://btcfee.org/">
     <link href="style.css" rel="stylesheet" type="text/css">
+    <script type="application/ld+json" id="input-search-ld-markup"></script>
+    <script type="application/ld+json" id="input-search-ld-dynamic"></script>
 </head>
 <body onLoad="main();">
+  <header class="root-header">
+      <div class="header__left">
+          <a href="https://btcfee.org/"><img class="header__logo" src="icons/logo.svg" alt="logo" /></a>
+      </div>
+      <div class="header__right">
+          <a href="https://btcscan.org/"><img src="icons/btc-icon.svg" /></a>
+          <a href="https://ethscan.org/"><img src="icons/eth-icon.svg" /></a>
+          <a href="https://xmrscan.org/"><img src="icons/xmr-icon.svg" /></a>
+          <a href="https://moneroexplorer.org/"><img src="icons/monero-icon.svg" /></a>
+          <a href="https://btcmempool.org/"><img src="icons/mempool-icon.svg" /></a>
+          <a href="https://btcfee.org/"><img src="icons/btc-fee-icon.svg" /></a>
+          <a href="https://btcfees.org/"><img src="icons/btc-fees-icon-action.svg" /></a>
+      </div>
+  </header>
   <div class="header">
-    <b>Johoe's Bitcoin Mempool Statistics</b> &ndash;
+    <b class="header-title">Mempool Statistics</b> &ndash;
     <div id="configs" style="display: inline-block;"></div>
     &ndash; <div id="periods" style="display: inline-block;">Period: </div>
     &ndash; <div id="by" style="display: inline-block;">By: </div>
+      <a href="https://btcfee.org/" class="header-faq-page-link lnk">FAQ</a>
   </div>
   <div id="javascriptwarning">
     This page needs JavaScript to create the graphs and dynamically load the
@@ -39,103 +64,11 @@
       document.getElementById("javascriptwarning").style.display = "none";
     </script>
   </div>
+  <h1 id="title-element">Real-Time Cryptocurrency Fee Analytics</h1>
+  <p id="title-caption-element">BTCfee.org provides real-time analytics for cryptocurrency transaction fees. Explore metrics like transaction weights, fees, and counts for Bitcoin, Ethereum, and other top cryptocurrencies.</p>
   <div id="chartContainer" class="chart-container" style="height: 600px;"></div>
   <div id="chartLegend" class="chart-legend"></div>
   <div id="tooltip"></div>
   <div id="chartDivider" class="chart-divider">:&nbsp;:&nbsp;:&nbsp;:</div>
-  <div>
-    <p>
-      This page shows the unconfirmed transactions, also known as the transactions in the <b>mempool</b>. These transactions haven't been written to the block chain yet and kept in the volatile memory. This page gives a real-time view and shows how the mempool evolves over the time.  The transactions are colored by the <span class="btc bch bsv doge ltc dash">fee rate: the amount of fee they pay per <span class="btc ltc">virtual</span> byte</span><span class="eth">gas price they pay</span>.  The data on this page is generated from my full node and is updated every minute.  In decentralized cryptocurrencies there is no global transaction mempool. Every node keeps its own set of unconfirmed transactions that it has seen.  The mempool is also cleared when I reboot my node.
-    </p>
-    <p>The data is colored by fee rate <span class="btc bch bsv doge ltc dash">given in satoshi per bytes</span><span class="eth">also known as gas price</span>.  The lowest colored stripe is for transactions that pay the lowest fee.  Higher fee transactions are stacked on top of it.  Since miners prefer high fee transactions, a new block usually only removes the top-most <span class="btc ltc">1 MB worth of </span>transactons from the queue.  If a colored stripe persists over several hours without getting smaller, this means that transactions using this fee rate are not confirmed during this time, because there are higher paying transactions that take precedence. </p>
-    <p>The horizontal axis is time and you can choose the range from the last <em>2h</em> to <em>all</em>.  The vertical axis of the chart can be switched between <em>count</em>, <em>fee</em>, and <em>weight</em>.  In the <em>weight</em> chart the height of the graph reflects the total transaction <span class="btc bch bsv doge ltc dash">size</span><span class="eth">gas limit</span> instead of the number of transactions.  If a stripe on the <em>weight</em> chart is much bigger than on the <em>count</em> chart, the transactions in this stripe are <span class="btc bch bsv doge ltc dash">larger</span><span class="eth">more computation demanding</span> than the average.
-    Similarly, in the <em>fee</em> chart, the height reflects the total amount of fee the pending transactions pay.</p>
-    <p>You can click on some fee rate in the legend to hide all fee rates below that level.  This way you can see better how many transactions are competing with that fee level.</p>
-    <p><span class="btc ltc">Note that sizes include the segwit discount.  This means that the graphs show virtual byte (weight divided by four).  For segwit transactions, the real size of the transaction is a bit larger than the virtual size.  A block will always take at most 1 vMB from the mempool, even if it is bigger than 1&nbsp;MB, and the weight diagram shows the size in vbyte (with the segwit discount included).  The segwit discount is also included when computing the fee rate for a transaction. </span>In case a transaction pays exactly the fee that defines the boundary between stripes, it is included in the higher stripe.  Free transactions are not included, even if they make it into the mempool.</p>
-
-    <div class="btc"><p>The default mempool of a Bitcoin node is 300 MB, but the size is computed differently: there is no segwit discount and small transactions take more space in the mempool than they take when they are written into a block.  Therefore, the default limit of 300 MB corresponds to 50-120 vMB, depending on the shape of the transactions.</p></div>
-
-    <div class="eth"><p>Note that transactions that are dependent on lower fee transactions are put in the lower fee stripe.  The top-most fee stripe contains only the transactions that pay the highest gas price and that can be mined, so miners will usually choose these transactions first.  The statistics shows the maximum gas usage and the maximum gas price for the transactions; they may use less gas and pay less fee when they are mined, depending on the exact computations performed and the base fee at the time.  The maximum miner tip is not considered at all in this statistics. Some very high gas transactions are excluded, since they distort the statistics and cannot be easily mined.</p></div>
- </div>
-
-   <h2>Donation Address</h2>
-    <p>Thanks to your generous donations, I can run the site and recoup my hosting costs without any ads or user tracking.
-    Please consider making a small donation once a year.  You can switch to the currency you prefer.
-    <span class="dobtc">You can also donate with Lightning to save transaction fees.  The right QR code is for wallets supporting lnurl, the button in the middle should work with every lightning wallet.</span>
-    <span class="doeth">You can also donate on layer 2 like Arbitrum or Optimism sending to the same address.</span></p>
-    <div id="donbox" class="centered">
-      <div class="centered" id="donatecoins" style="display: inline-block;"></div><br>
-      <div class="dobtc">
-      <div class="donation">
-        <a href="bitcoin:bc1qvh8zkqvzea3j63809c3ayt8jzd0cpxgl3wkda7"><div class="qrcontainer"><img class="cover pixelated qrcode" width="148" height="148" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlAQMAAAD/ULJAAAAABlBMVEX///8AAABVwtN+AAAA00lEQVQI12NABvYT7f0fMCg0ftJQYNBbHH16AYPetkXdQHKfx+sFDAo7s4Hi9qtWrX/AwKB3EKhev7XCv4FBkav9TgKD+BGP9gMM/CxHFx9gMJnjs1mBQSL9ke8CBvMfc3kOMLDzL/dYwGCxaNt0BgZtS7mTDxgETwQwHGBQq72//wCD+qYF2xgYTDNvRCgwaK+uUjvAoCvtr7+AQfFp1T8GoF3tSQsY7Gdnv3ZgUFjYqPwA6B6vfUDhdU/CEhj0dghpMDAozNU83MBgv8/qsQOyhwAHpEay56OnRAAAAABJRU5ErkJggg==" alt=""><img class="qrlogo" src="bc-logo-32x32.png" alt=""></div></a><button class="lnbutton" type="button" onClick="window.open('lightning/','ln','resizeable,height=600,width=500'); return false;"><img class="bolt" src="lightning/lightning-bolt.png" alt=""><br>donate with lightning</button><a href="lightning:lnurl1dp68gurn8ghj76ngdajku6trddjjuer99uh8wetvdskkkmn0wahz7mrww4excup0d4jk6ur0dakqhmhnx2"><div class="qrcontainer"><img class="cover pixelated qrcode" width="148" height="148" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlAQMAAAD/ULJAAAAABlBMVEX///8AAABVwtN+AAAA1ElEQVQI12NABvare/QfMCisecChwKDXLuK9gEFvX9FqINn2qnsBg0L35g4FBvtVq9Y/YGBQrGhgYNC9+q0zgUEi87JBAoPSVLvXDQxsGnn9DxgUv8xoaGDQrr/2dAED20J5/wQGVvGaIAYGrvNLtjowCEaYOCkwiO3QXwC0MUvrxQMG24kFHw4wKFR9P/2AgbfvYNYCBhG+i6ccGJQOxtonMDBYsS9qYLDfpfRKgUFhnegiBga9lr59CQx62z6zA8m1J0QbGBQa/i0HmrZwqpQDsocAQh9HDNJpTOgAAAAASUVORK5CYII=" alt=""><img class="qrlogo" src="lnurl-38x38.png" alt=""></div></a><br>
-        bitcoin:<a href="bitcoin:bc1qvh8zkqvzea3j63809c3ayt8jzd0cpxgl3wkda7">bc1qvh8zkqvzea3j63809c3ayt8jzd0cpxgl3wkda7</a><br>
-        (old bitcoin:<a href="bitcoin:3Ny4YuobsPQWQJ7TMxt1FTRw39tC8c67N6">3Ny4YuobsPQWQJ7TMxt1FTRw39tC8c67N6</a>)<br>
-        or pay with <a href="#" onClick="window.open('lightning/','ln','resizeable,height=600,width=500'); return false;">lightning</a>, via
-        <a href="lightning:lnurl1dp68gurn8ghj76ngdajku6trddjjuer99uh8wetvdskkkmn0wahz7mrww4excup0d4jk6ur0dakqhmhnx2">lnurl</a>, or to mempool@jhoenicke.de.
-      </div>
-      </div>
-      <div class="dobch">
-      <div class="donation">
-        <a href="bitcoincash:qrmvslxxyhquqenejs4m6yyca5meyxdlsg2shkhc7p"><div class="qrcontainer"><img class="cover pixelated qrcode" width="148" height="148" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlAQMAAAD/ULJAAAAABlBMVEX///8AAABVwtN+AAAA1UlEQVQI12NABvad688/YFCYeolDgUFvOePqBQx6G7Z1A8lFod4LGBS2Z2koMNivWrX+AQODzVmgev25QecbGATslnskMBgty9h/gMGK5eXnBQzqp3zKHRhYTd+dUGAQes258ACDnLbizAUMWtvFpjMwMIdtf/mAQfBvgEEDgzifpfkBBsEdSz4lMBgrn78DtHdpElC9otBR0wUMyu+v/XNgYNBWX7SAwX7ei2wHBoVdjx83AN3ms8+BQW/L87AHDHoLOCwZgG5WPN3AYL9lyicHZA8BAIqhSWkbDJM/AAAAAElFTkSuQmCC" alt=""><img class="qrlogo" src="bch-logo-30.png" alt=""></div></a><br>
-        <a href="bitcoincash:qrmvslxxyhquqenejs4m6yyca5meyxdlsg2shkhc7p">bitcoincash:qrmvslxxyhquqenejs4m6yyca5meyxdlsg2shkhc7p</a><br>
-        (old bitcoincash:<a href="bitcoincash:1PVsQJLe68sknbrugMU57jDgDnAbpn7Tru">1PVsQJLe68sknbrugMU57jDgDnAbpn7Tru</a>)<br>
-        or pay to mempool@jhoenicke.de (OpenAlias).
-      </div>
-      </div>
-      <div class="doltc">
-      <div class="donation">
-        <a href="litecoin:ltc1qp2qsuh73rrj8gxpvw65ck554qfnv8s5pke3qzm"><div class="qrcontainer"><img class="cover pixelated qrcode" width="148" height="148" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlAQMAAAD/ULJAAAAABlBMVEX///8AAABVwtN+AAAA1ElEQVQI12NABvZTW9Y/YFDojj2hwKA3vWv1Aga9Za9OA8nJ+14vYFDY9LlDgcF+1SqgGgY1DwcGBom2u7oMDLLxCVkPGASe2O9OYBDOWnNTgcH22v32BwxmjtKvHjCIvZiV94BBqVB8IQOD9J0bmxkYFIVL9Q8wyK2LE0xgEKlbH/aAgeu0pOMCBkbWB4wJDGY/dGoeMDAnGgYpMJjfELU/wMBg8OnxAaDbQlc1MChM+LcI6La50f8aGPQaTy08wKC3taof6ObFYl1At034mJuA7CEA8yNLCukmy7UAAAAASUVORK5CYII=" alt=""><img class="qrlogo" src="ltc-32px.png" alt=""></div></a><br>
-        litecoin:<a href="litecoin:ltc1qp2qsuh73rrj8gxpvw65ck554qfnv8s5pke3qzm">ltc1qp2qsuh73rrj8gxpvw65ck554qfnv8s5pke3qzm</a><br>
-        (old litecoin:<a href="litecoin:MK7jfGG48RTsETCXTAz1wP27uVoFhBUV5o">MK7jfGG48RTsETCXTAz1wP27uVoFhBUV5o</a>)
-      </div>
-      </div>
-      <div class="dodash">
-      <div class="donation">
-        <a href="dash:XhvBxZ5WiTK7K8js4uphXCP5QjFQMogAMk"><div class="qrcontainer"><img class="cover pixelated qrcode" width="148" height="148" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlAQMAAAD/ULJAAAAABlBMVEX///8AAABVwtN+AAAA0UlEQVQI12NABvZr1c4/YFBYap6hwKC3bJn3Aga9raKngeRKxu4FDAp9N4Hi9qtWrX/AwKBavICBQepcCPcDBmXFUy8ZGERPbWJ+wGCfq/jPgYF1paolA4NYylXDBwzq/RPkgOIBsjYODPzPZ0U8YBA3KRJMYNBZUb07gUE2t3eeA4Pw3WP/FBjYOb4pJjBod17vT2CQ5yn+ocCg+bH3P9Au4wWLFzDY72vUArptBocyA4Pemhr7BAa9GaqOQHKtoxjQbWu2XndgsJ+yqDIB2UMAFahFDpSQnIQAAAAASUVORK5CYII=" alt=""><img class="qrlogo" src="dash-32px.png" alt=""></div></a><br>
-        dash:<a href="dash:XhvBxZ5WiTK7K8js4uphXCP5QjFQMogAMk">XhvBxZ5WiTK7K8js4uphXCP5QjFQMogAMk</a><br>&nbsp;
-      </div>
-      </div>
-      <div class="dodoge">
-      <div class="donation">
-        <a href="dogecoin:DB1GuDoRbc33VvZRxWSoH76aR16P7D2P56"><div class="qrcontainer"><img class="cover pixelated qrcode" width="148" height="148" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAlAQMAAAD/ULJAAAAABlBMVEX///8AAABVwtN+AAAAz0lEQVQI12NABvYzXfkfMCh0/VqhwKA3Wat7AYPeXm4Q2TV/9QIGhcW7OhQY7FetWv+AgcG4oYGBQaLLNZeBgd25R/cBg83lvV4KDOKlZ2YrMIh9mPczgUGJ38piAYPhmWT1BQzCpde0GRhEr1fEANmxZ2IdGITO5b5QYND20/FXYND8Y3begUFc7ORaBQbrW30FCgwsrgn9DgzWv93rgHaZ+S92YLDvin8FdMOUt4+Bbmte+x9I9r8TApJ7nu1KYFDYracOdH/vonwFZA8BAOHdRMBKlE5VAAAAAElFTkSuQmCC" alt=""><img class="qrlogo" src="doge-32px.png" alt=""></div></a><br>
-	dogecoin:<a href="dogecoin:DB1GuDoRbc33VvZRxWSoH76aR16P7D2P56">DB1GuDoRbc33VvZRxWSoH76aR16P7D2P56</a><br>
-      </div>
-      </div>
-      <div class="doeth">
-      <div class="donation">
-	<div class="sidebyside">
-	<span class="cover pixelated" style="width: 60px;height:60px; background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAgMAAAC5YVYYAAAACVBMVEWV5Xgyfg0qispl6+N0AAAAH0lEQVQI12NwYGRwdGQIDWVQkWBwEWSYwMagNgMoAgAqGwPVVzuqWQAAAABJRU5ErkJggg==); border-radius: 50%; display: inline-block;">
-	</span><br>
-	ethereum: mempool.jhoenicke.de (ENS)<br>
-        <input type="text" id="ethaddress" size="40" value="0xC6F9a38C4B0269Deef360aeD2852b7D22b6297d9" style="border: none;" readonly>
-	<a id="copyaddressbutton" href="javascript:copyToClip('ethaddress');" title="Copy address to clipboard"><sup>copy</sup></a>
-<span id="linkIcon" class="btn-icon__inner far fa-copy"></span>
-        </div>
-        <div id="ethdonate" class="hidden">
-          Network:
-          <select id="ethnetwork" name="network">
-            <option value="0" selected>Choose a network</option>
-            <option value="1">Ethereum Mainnet</option>
-            <option value="42161">Arbitrum One</option>
-            <option value="8453">Base</option>
-            <option value="100">Gnosis</option>
-            <option value="10">OP Mainnet</option>
-            <option value="137">Polygon</option>
-          </select><br>
-	  Donate <input type="text" id="ethamount" size="10" value="0.002">
-          <select id="ethtoken" name="token">
-          </select><br>
-          <button id="ethsendbutton" class="lnbutton">Donate with <span id="ethapp">Metamask</span></button><br>
-          <span id="ethmessage"></span>
-          <script>ethInit();</script>
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="centered" style="font-size: 13px; margin: 20px;">
-        This page is using free software. All statistics are generated by running my own full nodes.<br>
-        Source code on github: <a href="https://github.com/jhoenicke/mempool">https://github.com/jhoenicke/mempool</a><br>
-        © 2016-2023 <a href="https://jochen-hoenicke.de/">Jochen Hoenicke</a>
-    </div>
   </body>
 </html>

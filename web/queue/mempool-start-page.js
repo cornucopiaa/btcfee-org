@@ -178,35 +178,6 @@ var config = [
      "inc": true}
 ];
 var periods = ["2h", "8h", "24h", "2d", "4d", "1w", "2w", "30d", "3m", "6m", "1y", "all"];
-var periodsMapText = {
-  '2h': '2 h',
-  '8h': '8 h',
-  '24h': '24 h',
-  '2d': '2 d',
-  '4d': '4 d',
-  '1w': '1 w',
-  '2w': '2 w',
-  '30d': '30 d',
-  '3m': '3 m',
-  '6m': '6 m',
-  '1y': '1 y',
-  'all': 'all',
-}
-
-var periodsMapTextFull = {
-  '2h': '2 hours',
-  '8h': '8 hours',
-  '24h': '24 hours',
-  '2d': '2 days',
-  '4d': '4 days',
-  '1w': '1 weeks',
-  '2w': '2 weeks',
-  '30d': '30 days',
-  '3m': '3 months',
-  '6m': '6 months',
-  '1y': '1 year',
-  'all': 'all',
-}
 
 var reloader;
 var reloadInterval = 0;
@@ -473,33 +444,10 @@ function setupChart() {
           color: "#A8ADB4",
                 margin: {top:30} },
     };
-    chart = $.plot("#chartContainer", converted, chartconfig);
-    chart.hooks.drawOverlay.push( function(plot, cvs) {
-        drawTitle(plot, cvs);
-    });
 }
-
-function showChart(raw, dataidx, container, unit) {
-    for (var i = 0; i < 3; i++) {
-	storeData(raw, i, scale(i));
-    }
-    setupChart();
-    window.onresize = setupChart;
-    $(chart.getPlaceholder()).bind("plothover", function (event, pos, item) {
-        tooltip(event, pos, item);
-    });
-    $(chart.getPlaceholder()).bind("plotselected", zoomHandler);
-}
-
 
 function showMempool(rawdata) {
     var idx = byindex[currentby];
-    showChart(rawdata, idx, "chartContainer", scale(idx));
-    reloadInterval = 300000;
-    reloader = update;
-    if (reloadInterval > 0) {
-        reloading = setTimeout(reloader, reloadInterval);
-    }
 }
 
 function zoomData(rawdata) {
@@ -613,17 +561,16 @@ function sethash() {
 	optfeelevel = "," +
 	    config[currconfig].ranges[config[currconfig].show[feelevel]];
     }
-    location.hash = "#" + config[currconfig].name + "," + currtimespan + "," + bynames[currentby] + optfeelevel;
 
-    const currentByFormatted = `${bynames[currentby].slice(0, 1).toUpperCase()}${bynames[currentby].slice(1)}`;
-    const curTimeSpanFormatted = periodsMapText[currtimespan];
-    const curTimeSpanFormattedFull = periodsMapTextFull[currtimespan];
+    var hashString = "#" + (config[currconfig].name || 'BTC') + "," + (currtimespan || '24h') + "," + (bynames[currentby] || 'weight');
+    var locationToReplace = `${window.location.origin}/statistics${hashString}`;
 
-    const description = `Explore ${config[currconfig].name} transaction data over ${currtimespan === 'all' ? 'time' : 'the last ' + curTimeSpanFormattedFull}. Analyze vbyte ${bynames[currentby]} trends to understand network congestion and fee market shifts on BTCfee.org.`
-    const canonicalLink = `https://btcfee.org/#${config[currconfig].name},${currtimespan},${bynames[currentby]}`
-    const title = `${config[currconfig].name} Fee Statistics - ${curTimeSpanFormatted} - ${currentByFormatted} | BTCfee.org`
-    const titleWithoutCaption = `${config[currconfig].name} Fee Statistics - ${currtimespan} - ${bynames[currentby]}`
-    const titleCaption = `This page provides ${config[currconfig].name} transaction ${bynames[currentby]} statistics over ${currtimespan === 'all' ? 'time' : 'the last ' + currtimespan}. Gain insights into network activity and fee structures in real-time.`
+    window.location.replace(locationToReplace)
+
+    const description = `Discover real-time mempool visualizations for BTC, ETH, BCH, DOGE, LTC, and DASH. Compare counts, fees, and weight over custom periods to gain actionable insights into blockchain activity.`
+    const canonicalLink = `https://btcfee.org/`
+    const title = `BTC Fee Statistics | BTCfee.org`
+    const titleWithoutCaption = `BTC Fee Statistics | BTCfee.org`
     const markUpLd = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebSite",
@@ -657,7 +604,6 @@ function sethash() {
     document.querySelector('title').innerHTML = title;
     document.querySelector('link[rel="canonical"]').setAttribute("href", canonicalLink);
     document.getElementById('title-element').innerHTML = titleWithoutCaption;
-    document.getElementById('title-caption-element').innerHTML = titleCaption;
     document.getElementById('input-search-ld-markup').innerHTML = markUpLd;
     document.getElementById('input-search-ld-dynamic').innerHTML = dynamicMarkUpLd;
 }
@@ -834,7 +780,7 @@ function main() {
         div.appendChild(document.createTextNode("\u200b"));
         div.appendChild(btn);
     }
-    setconfig(hashconfig);
+    // setconfig(hashconfig);
     if (hashfeelevel >= 0) {
 	feelevel = config[currconfig].show.findIndex(show => config[currconfig].ranges[show] >= hashfeelevel);
 	if (feelevel < 0) {
@@ -842,8 +788,6 @@ function main() {
 	}
     }
     currentby = hashby;
-    document.getElementById("by"+currentby).classList.add("selected");
-    button(hashtimespan);
-    document.getElementById("chartDivider").onmousedown = dragDivider;
-    document.getElementById("chartDivider").ontouchstart = touchDivider;
+    // document.getElementById("by"+currentby).classList.add("selected");
+    // button(hashtimespan);
 }
